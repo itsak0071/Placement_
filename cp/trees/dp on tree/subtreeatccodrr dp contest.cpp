@@ -41,6 +41,18 @@ int main() {
       if (v == p) continue;
       dfs(v, u);
       dp[u] = 1LL * dp[u] * (dp[v] + 1) % m;
+      // dp[u] = number of valid colorings of the subtree rooted at u,
+// assuming u is black.
+//
+// For each child v, there are two independent choices:
+// 1. Paint the entire subtree of v white -> 1 way.
+// 2. Include black vertices from v's subtree. Then v must be black
+//    to keep all black vertices connected, which contributes dp[v] ways.
+//
+// Hence, each child contributes (dp[v] + 1), and since the choices
+// for different children are independent:
+//
+// dp[u] = ∏ (dp[v] + 1)
     }
   };
   dfs(1, 0);
